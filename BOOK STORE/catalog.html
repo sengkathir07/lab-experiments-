@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Catalog</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f7;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .catalog {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      width: 220px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .card-title {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background-color: #2c80b4;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📚 Book Catalog</h1>
+
+  <div class="catalog">
+    <div class="card">
+      <img src="https://krct.ac.in/ktgadmin/assets/php/gallery/600201670439367.jpeg" alt="CSE">
+      <div class="card-title">CSE Book</div>
+      <button class="add-btn" onclick="addToCart('CSE Book', 'https://krct.ac.in/ktgadmin/assets/php/gallery/600201670439367.jpeg', 40)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTObxEn4gzErdIqxZ2r_vt8wgF6m8IdphR4vw&s" alt="ECE">
+      <div class="card-title">ECE Book</div>
+      <button class="add-btn" onclick="addToCart('ECE Book', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTObxEn4gzErdIqxZ2r_vt8wgF6m8IdphR4vw&s', 35)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSdrZMpHKOU5fmSohaURV8NliwP9-iVX1_xw&s" alt="EEE">
+      <div class="card-title">EEE Book</div>
+      <button class="add-btn" onclick="addToCart('EEE Book', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSdrZMpHKOU5fmSohaURV8NliwP9-iVX1_xw&s', 30)">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="https://www.citchennai.edu.in/wp-content/uploads/2025/04/CIVIL-ENGINEERING-1.webp" alt="Civil">
+      <div class="card-title">CIVIL Book</div>
+      <button class="add-btn" onclick="addToCart('CIVIL Book', 'https://www.citchennai.edu.in/wp-content/uploads/2025/04/CIVIL-ENGINEERING-1.webp', 50)">Add to Cart</button>
+    </div>
+  </div>
+
+  <script>
+    function addToCart(title, image, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const index = cart.findIndex(item => item.title === title);
+
+      if (index >= 0) {
+        cart[index].quantity += 1;
+      } else {
+        cart.push({ title, image, price, quantity: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${title} added to cart`);
+    }
+  </script>
+
+</body>
+</html>
